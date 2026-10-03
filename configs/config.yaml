@@ -6,6 +6,7 @@ paths:
   log_file: logs/olist.log
   audit_sql: sql/00_quality_checks.sql
   quality_report: docs/data_quality_report.md
+  views_sql: sql/01_clean_views.sql
 tables:            # load order
   - {name: product_category_name_translation, file: product_category_name_translation.csv}
   - {name: customers,      file: olist_customers_dataset.csv}
