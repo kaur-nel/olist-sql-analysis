@@ -21,3 +21,8 @@ tables:            # load order
   - {name: order_reviews,  file: olist_order_reviews_dataset.csv}
 analysis:
   min_sample_size: 30   # groups with fewer orders are flagged low_sample and not ranked
+charts:
+  outputs_dir: outputs
+  images_dir: docs/images
+  dpi: 150
+  revenue_start_month: "2017-01"
