@@ -6,8 +6,14 @@ import sys
 
 from sqlalchemy.exc import SQLAlchemyError
 
-from src.load_data import (ROOT, ConfigError, load_config, make_engine,
-                           read_statements, setup_logging)
+from src.load_data import (
+    ROOT,
+    ConfigError,
+    load_config,
+    make_engine,
+    read_statements,
+    setup_logging,
+)
 
 log = logging.getLogger("olist.views")
 

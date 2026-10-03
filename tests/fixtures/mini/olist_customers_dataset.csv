@@ -1,0 +1,8 @@
+customer_id,customer_unique_id,customer_zip_code_prefix,customer_city,customer_state
+c1,u1,1000,"  São Paulo ",sp
+c2,u1,1000,São Paulo,SP
+c3,u2,2000,Rio de Janeiro,RJ
+c4,u3,3000,Curitiba,PR
+c5,u4,2000,Rio de Janeiro,RJ
+c6,u5,3000,Curitiba,PR
+c7,u6,1000,São Paulo,SP

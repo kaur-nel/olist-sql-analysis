@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import re
 import sys
-from pathlib import Path
 
 import pandas as pd
 from sqlalchemy import text
@@ -41,7 +40,8 @@ def main() -> int:
         engine = make_engine()
         with engine.connect() as conn:
             for path in files:
-                sql_text = path.read_text(encoding="utf-8").replace("{{MIN_SAMPLE_SIZE}}", str(min_n))
+                raw_sql = path.read_text(encoding="utf-8")
+                sql_text = raw_sql.replace("{{MIN_SAMPLE_SIZE}}", str(min_n))
                 for name, sql in split_results(sql_text).items():
                     if "{{" in sql:
                         raise ValueError(f"{path.name}: unknown placeholder in SQL")
@@ -50,7 +50,8 @@ def main() -> int:
                     except SQLAlchemyError as exc:
                         raise RuntimeError(f"{path.name} [{name or 'main'}] failed: {exc}") from exc
                     out = out_dir / (f"{path.stem}__{name}.csv" if name else f"{path.stem}.csv")
-                    df.to_csv(out, index=False, encoding="utf-8-sig")  # sig = Excel-friendly accents
+                    # utf-8-sig keeps accents readable when opened in Excel
+                    df.to_csv(out, index=False, encoding="utf-8-sig")
                     log.info("%s -> %s (%d rows)", path.name, out.name, len(df))
     except (ConfigError, FileNotFoundError, ValueError, KeyError, RuntimeError) as exc:
         log.error("Run failed: %s", exc)

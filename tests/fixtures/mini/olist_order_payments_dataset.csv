@@ -1,0 +1,8 @@
+order_id,payment_sequential,payment_type,payment_installments,payment_value
+o1,1,credit_card,1,110.00
+o2,1,credit_card,3,230.00
+o3,1,boleto,1,55.00
+o4,1,credit_card,0,80.00
+o4,2,not_defined,1,5.00
+o5,1,voucher,1,40.00
+o6,1,credit_card,2,65.00

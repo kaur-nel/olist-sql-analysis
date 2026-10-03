@@ -104,7 +104,8 @@ def cast_column(s: pd.Series, sql_type: str, table: str, col: str) -> pd.Series:
         try:
             out = out.astype("Int64")
         except TypeError as exc:
-            raise DataValidationError(f"{table}.{col}: non-whole numbers in integer column") from exc
+            raise DataValidationError(
+                f"{table}.{col}: non-whole numbers in integer column") from exc
     elif sql_type in ("numeric", "double precision"):
         out = pd.to_numeric(s, errors="coerce")
     else:
@@ -161,7 +162,8 @@ def apply_constraints(engine: Engine, path: Path) -> None:
             with engine.begin() as conn:
                 conn.exec_driver_sql(stmt)
         except IntegrityError:
-            log.warning("Skipped (existing data violates it, see data-quality audit): %s", stmt[:90])
+            log.warning("Skipped (existing data violates it, see data-quality audit): %s",
+                        stmt[:90])
 
 
 def main() -> int:
